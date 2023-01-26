@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} (www\.)?https://erpsolutionscr.com
+RewriteRule (.*) https://{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+SetEnv ENVIRONMENT production
+
+
+RewriteRule ^(.*)$ public/$1 [L]
