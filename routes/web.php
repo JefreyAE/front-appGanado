@@ -9,12 +9,13 @@ Route::get('/login', function () {
 });
 
 Route::get('/redirect','UserController@redirect')->name('animals.register');
-Route::post('/user/register/','UserController@register')->name('user.register');
+Route::post('/user/register/','UserController@create')->name('user.create');
 Route::get('/user/logout/','UserController@logout')->name('user.logout');
 
 Route::get('/','UserController@index');
 
 Route::post('/user/login','UserController@login')->name('login');
+Route::get('/user/register','UserController@register')->name('user.register');
 Route::get('/user/profile','UserController@profile')->name('user.profile')->middleware(FrontAuthMiddleware::class);
 Route::post('/user/update','UserController@update')->name('user.update')->middleware(FrontAuthMiddleware::class);
 Route::get('/main/index/{token?}','MainController@index')->middleware(FrontAuthMiddleware::class)->name('main.index');

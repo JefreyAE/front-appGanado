@@ -13,7 +13,7 @@ class Constants {
     public function __construct() {
          //Modidificar esta variable para especificar la ruta de la API
          //$this->urlAPI = 'http://apirestlaravel.erpsolutionscr.com';
-         $this->urlAPI ='http://localhost/public_html/apirestlaravel/public';
+         $this->urlAPI ='http://localhost/back-appGanado/public';
     }
     
     public function url(){

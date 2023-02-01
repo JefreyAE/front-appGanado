@@ -45,8 +45,17 @@ class User extends Authenticatable {
         'email_verified_at' => 'datetime',
     ];
 
-    public function register() {
-        
+    public function register($name, $surname, $email, $password) {
+        $response = Http::asForm()->post($this->url . '/api/register', [
+            'json' => [
+                'name' => $name,
+                'surname' => $surname,
+                'email' => $email,
+                'password' => $password
+            ]
+        ]);
+
+        return $response->json();
     }
 
     public function index(Request $request) {

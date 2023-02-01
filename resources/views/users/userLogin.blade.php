@@ -41,7 +41,7 @@
                     <div class='error'>{{$message}}</div>
                 @endif
                 <button type="submit" class="large green button-login " id="btnLogin" >Ingresar</button>  
-                <!--<a href="#" class="link">Registrarse</a>-->
+                <a href="{{ url('/user/register') }}" class="link">Registrarse</a>
             </form>
         </div> 
     </div>

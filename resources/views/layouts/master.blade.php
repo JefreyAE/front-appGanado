@@ -12,7 +12,7 @@
         </script>
         <title>@yield('title')</title>
         <link rel="icon" type="favicon/x-icon" href="{{asset("img/supertux.jpg")}}" />
-        <link rel="stylesheet" type="text/css" href="{{asset("css/main1.css")}}">
+        <link rel="stylesheet" type="text/css" href="{{asset("css/main.css")}}">
         <script type="text/javascript" src="{{asset("js/jsmain.js")}}"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Registro y control de estadísticas para un hato de ganado vacuno" >

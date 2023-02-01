@@ -11,7 +11,6 @@
 
 @section('header')
     @if(Request::is('/'))
-    asdfasdfasd
         @yield('title_header')
     @endif
     @include('includes.header')

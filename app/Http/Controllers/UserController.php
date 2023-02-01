@@ -23,7 +23,7 @@ class UserController extends Controller {
     }
 
     public function register() {
-        
+        return view('users.userRegister');
     }
 
     public function profile() {
@@ -31,7 +31,44 @@ class UserController extends Controller {
     }
 
     public function create(Request $request) {
-        
+
+        $name = $request->input('name');
+        $surname = $request->input('surname');
+        $email = $request->input('email');
+        $password1 = $request->input('password1');
+        $password2 = $request->input('password2');
+
+        if($password1 != $password2){
+            $error = "Las constraseñas no coinciden.";
+            return view('users.userRegister', array('error' => $error));
+        }
+       
+        $user = new User();
+        $response = $user->register($name, $surname, $email, $password1);
+
+        if ($response == null) {
+            $error = "Ocurrio un error al registrar los datos.";
+            return view('users.userRegister', array('error' => $error));
+        }
+
+        if (!empty($response['status'])) {
+            if ($response['status'] == "success") {
+                if (isset($response)) {
+                    return view('users.userRegister', ['message' => $response['message']]);
+                }
+            }
+            if ($response['status'] == "error") {
+                if (!empty($response['errors'])) {
+                    return view('users.userRegister', ['listErrors' => $response['errors'],
+                        'error' => $response['message']]);
+                } else {
+                    return view('users.userRegister', array('error' => $response['message']));
+                }
+            }
+        } else {
+            $error = "Ocurrio un error al registrar los datos.";
+            return view('users.userRegister', array('error' => $error));
+        }
     }
 
     public function index(){
