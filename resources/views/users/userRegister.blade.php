@@ -24,7 +24,7 @@
                     @if(!empty($message))
                         <div class="alert alert-success" role="alert">{{$message.' '}}<a href="{{url('/')}}">Ingresar</a></div>
                     @endif
-                    <form class="form_data" method="POST" action="{{action('UserController@create')}}">
+                    <form class="form_data mb-4" method="POST" action="{{action('UserController@create')}}">
                         {{csrf_field()}}
                         <div class="mb-3">
                             <label class="form-label" for="name">Ingrese su nombre:</label>
@@ -67,9 +67,10 @@
                             <div><input class="form-control" id="password2" name="password2" type="password" placeholder="Ingrese nuevamente la contraseña"  autocomplete="off" required></div>
                         </div>
                         <label class="form-label" class="message" type="hidden"></label>
-                        
-                        <input id="btnChangePassword" class="btn btn-danger btn-lg btn-block" type="submit" value="Registrar">  
-                        <!--<a href="#" class="link">Registrarse</a>-->
+                        <div class="mb-3">
+                            <input id="btnChangePassword" class="btn btn-danger btn-lg btn-block" type="submit" value="Registrar">  
+                        </div>
+                        <a href="{{ url('/') }}" class="link">Regresar</a>
                     </form>
                 </div> 
             </section>

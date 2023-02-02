@@ -26,7 +26,7 @@
                 @endif
                 <div class="mb-3">
                     <label class="form-label">Correo Electrónico:</label>
-                    <input class="form-control" id="email" name='email' type="email" placeholder="@" autofocus required>
+                    <input class="form-control" id="email" name='email' type="email" placeholder="@" value="demo@gmail.com" autofocus required >
                 </div>
                 @if(!empty($listErrors['password']))
                     @foreach($listErrors['password'] as $error)
@@ -35,13 +35,17 @@
                 @endif
                 <div class="mb-3">
                     <label class="form-label">Contraseña:</label>
-                    <input class="form-control" id="password" name="password" type="password" placeholder="Contraseña" required>
+                    <input class="form-control" id="password" name="password" type="password" value="demo1234" placeholder="Contraseña" required >
                 </div> 
                 @if(!empty($message))
                     <div class='error'>{{$message}}</div>
                 @endif
                 <button type="submit" class="large green button-login " id="btnLogin" >Ingresar</button>  
                 <a href="{{ url('/user/register') }}" class="link">Registrarse</a>
+                <div class="mb-3">
+                    <p> Press "INGRESAR", to access the Demo account.</p>
+                    <p> Data entry and data erasure have been disabled.</p>
+                </div>     
             </form>
         </div> 
     </div>
