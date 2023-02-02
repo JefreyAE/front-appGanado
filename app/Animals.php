@@ -94,7 +94,7 @@ class Animals extends Model {
         $response = Http::withHeaders([
                     'Authorization' => $token
                 ])->get($this->url . '/api/animals/index');
-
+                
         return $response->json();
     }
 

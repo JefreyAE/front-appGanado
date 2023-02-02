@@ -63,7 +63,6 @@ class InjectableController extends Controller {
         $injectable = new Injectables();
         $response = $injectable->saveInjectable($token, $animal_id, $injectable_type, $application_date, $injectable_name, $injectable_brand, $withdrawal_time, $effective_time, $description);
 
-
         $error = null;
         if ($response == null ) {
             $error = "Ocurrio un error al registrar los datos.";

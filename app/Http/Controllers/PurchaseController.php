@@ -16,8 +16,7 @@ class PurchaseController extends Controller {
         $response = $purchases->getListPurchases($token);
 
         $listPurchases = $response['listPurchases'];
-  
-        
+     
         return view('purchases.purchasesIndex', ['listPurchases' => $listPurchases]);
     }
 
@@ -48,14 +47,14 @@ class PurchaseController extends Controller {
         $purchase = new Purchases();
         $response = $purchase->findByDates($token, $date1, $date2);
 
-        $errorx = null;
+        $error = null;
         if ($response == null) {
-            $errorx = "Ocurrio un error al registrar los datos";
-            return view('purchases.purchasesSearch', ['errorx' => $errorx]);
+            $error = "Ocurrio un error al registrar los datos";
+            return view('purchases.purchasesSearch', ['errorx' => $error]);
         }
 
         if ($response['status'] == "error") {
-            return view('purchases.purchasesSearch', ['errorx' => $errorx]);
+            return view('purchases.purchasesSearch', ['errorx' => $response['message']]);
         }
 
         if (count($response['listPurchases']) == 0) {
@@ -63,7 +62,7 @@ class PurchaseController extends Controller {
         }
 
         return view('purchases.purchasesSearch', ['listPurchases' => $response['listPurchases'],
-            'errorx' => $errorx]);
+            'errorx' => $error]);
     }
 
     public function create(Request $request) {
@@ -96,7 +95,7 @@ class PurchaseController extends Controller {
         if ($response1['status'] == 'error') {
             $error1 = "Ocurrio un error al registrar los datos.";
             return view('purchases.purchasesRegister', ['response' => $response1,
-                'errorMsg' => $error1
+                'errorMsg' => $response1['message']
             ]);
         }
 
@@ -119,9 +118,8 @@ class PurchaseController extends Controller {
             $error2 = "Ocurrio un error al registrar los datos.";
         }
         if ($response2['status'] == 'error') {
-            $error2 = "Ocurrio un error al registrar los datos.";
             return view('purchases.purchasesRegister', ['response' => $response2,
-                'errorMsg' => $error2
+                'errorMsg' => $response2['message']
             ]);
         }
 
@@ -208,7 +206,6 @@ class PurchaseController extends Controller {
         $description = $request->input('description');
         $name      = $request->input('name');
         $sex      = $request->input('sex');
-
 
         if(empty($price_kg)){
             $price_kg = 0;

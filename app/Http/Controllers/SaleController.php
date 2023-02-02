@@ -13,8 +13,7 @@ class SaleController extends Controller {
         $token = session('token');
         $sale = new Sales();
         $response = $sale->getListSales($token);
-
-        
+  
         return view('sales.salesIndex', ['listSales' => $response['listSales']]);
     }
 
@@ -27,15 +26,6 @@ class SaleController extends Controller {
     public function find(Request $request) {
         //retorna el listado de animales
         $token = session('token');
-
-        /* sale_type               varchar(100),
-          weight                  int(255),
-          price_total             int(255),
-          price_kg                int(255),
-          auction_commission      int(255),
-          auction_name            varchar(100),
-          description             text,
-          sale_date               datetime DEFAULT NULL, */
 
         $date1 = $request->input('date1');
         $date2 = $request->input('date2');
@@ -102,14 +92,18 @@ class SaleController extends Controller {
             ]);
         }
 
-        $error1 = null;
-        if ($response1 == null || $response1['status'] == 'error') {
-            $error1 = "Ocurrio un error al registrar los datos.";
+        $error = null;
+        if ($response1 == null ) {
+            $error = "Ocurrio un error al registrar los datos.";
+
+        }
+        if ($response1['status'] == 'error') {
+            $error = $response1['message'];
         }
 
         return view('sales.salesRegister', ['response' => $response1,
             'listAnimals' => $listAnimals,
-            'errorMsg' => $error1
+            'errorMsg' => $error
         ]);
     }
 
@@ -200,7 +194,6 @@ class SaleController extends Controller {
             $auction_name = '-';
         }
 
-
         $sale = new sales();
         $response2 = $sale->updateSale($token, $sale_id, $sale_type, $weight, $price_total, $price_kg, $auction_commission, $auction_name, $sale_date, $description);
 
@@ -211,9 +204,7 @@ class SaleController extends Controller {
         if ($response2['status'] == 'error') {
             $error2 = "Ocurrio un error al actualizar los datos.";
 
-            return redirect ('/sales/sale/detail/' . $animal_id . '/' .$sale_id . '/error/'.$error2.'/');
-
-          
+            return redirect ('/sales/sale/detail/' . $animal_id . '/' .$sale_id . '/error/'.$error2.'/');     
         }
 
         return redirect ('/sales/sale/detail/' . $animal_id . '/' .$sale_id . '/success/'.$response2['message'].'/');

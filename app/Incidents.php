@@ -18,7 +18,7 @@ class Incidents extends Model {
         $response = Http::withHeaders([
                     'Authorization' => $token
                 ])->get($this->url . '/api/incidents/index');
-
+   
         return $response->json();
     }
 

@@ -63,11 +63,12 @@ class IncidentController extends Controller {
             if($response1['status'] == 'error'){
                 $error1 = $response1['message']; 
             }
-            return view('incidents.incidentsRegister',[ 'response'    => $response1,
-                                                        'listAnimals' => $listAnimals,
-                                                        'errorMsg'    => $error1
-            ]); 
         }
+
+        return view('incidents.incidentsRegister',[ 'response'    => $response1,
+                                                    'listAnimals' => $listAnimals,
+                                                    'errorMsg'    => $error1
+        ]); 
     }
 
     public function deleteOne(Request $request){

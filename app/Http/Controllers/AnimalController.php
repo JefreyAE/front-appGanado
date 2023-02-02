@@ -154,11 +154,12 @@ class AnimalController extends Controller {
         $list = $animal->getListActiveAnimals($token);
         $animals = $list['listActive'];
 
-        $error1 = null;
+        
         if ($response == null) {
+            $error = "Ocurrio un error al registrar los datos";
             return view('animals.animalsRegister', ['animals' => $animals,
                 'response' => $response,
-                'errorMsg' => $response['message']
+                'errorMsg' => $error
             ]);
         }
 
