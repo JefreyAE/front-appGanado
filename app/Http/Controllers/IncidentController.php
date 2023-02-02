@@ -48,22 +48,26 @@ class IncidentController extends Controller {
         $listAnimals = $response2['listActive'];
         
         if($response2 == null ||  $response2['status'] == 'error'){
-            $error1 = "Ocurrio un error al registrar los datos.";
+            $error = "Ocurrio un error al registrar los datos.";
+            if($response2['status'] == 'error'){
+                $error = $response2['message'];
+            }
             return view('incidents.incidentsRegister',['response' => $response2,
-                                                       'errorMsg' => $error1                          
+                                                       'errorMsg' => $error                          
             ]);
         }
         
         $error1 = null;
         if($response1 == null || $response1['status'] == 'error'){
             $error1 = "Ocurrio un error al registrar los datos.";  
+            if($response1['status'] == 'error'){
+                $error1 = $response1['message']; 
+            }
+            return view('incidents.incidentsRegister',[ 'response'    => $response1,
+                                                        'listAnimals' => $listAnimals,
+                                                        'errorMsg'    => $error1
+            ]); 
         }
-           
-        return view('incidents.incidentsRegister',[ 'response'    => $response1,
-                                                    'listAnimals' => $listAnimals,
-                                                    'errorMsg'    => $error1
-        ]);    
-        
     }
 
     public function deleteOne(Request $request){

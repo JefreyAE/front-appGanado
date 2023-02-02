@@ -59,7 +59,7 @@ class AnimalController extends Controller {
         if ($response['status'] == 'error') {
             $error = "Ocurrio un error al consultar los datos.";
             return view('animals.animalsSearch', ['response' => $response,
-                'errorMsg' => $error
+                'errorMsg' => $response['message']
             ]);
         }
         if (count($response['listFind']) == 0) {
@@ -156,24 +156,22 @@ class AnimalController extends Controller {
 
         $error1 = null;
         if ($response == null) {
-            $error1 = "Ocurrio un error al registrar los datos.";
             return view('animals.animalsRegister', ['animals' => $animals,
                 'response' => $response,
-                'errorMsg' => $error1
+                'errorMsg' => $response['message']
             ]);
         }
 
         if ($response['status'] == 'error') {
-            $error1 = "Ocurrio un error al registrar los datos.";
             return view('animals.animalsRegister', ['animals' => $animals,
                 'response' => $response,
-                'errorMsg' => $error1
+                'errorMsg' => $response['message']
             ]);
         }
 
         return view('animals.animalsRegister', ['animals' => $animals,
             'response' => $response,
-            'errorMsg' => $error1
+            'errorMsg' => $response['message']
         ]);
     }
 

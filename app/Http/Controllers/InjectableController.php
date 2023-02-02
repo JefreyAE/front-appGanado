@@ -64,14 +64,18 @@ class InjectableController extends Controller {
         $response = $injectable->saveInjectable($token, $animal_id, $injectable_type, $application_date, $injectable_name, $injectable_brand, $withdrawal_time, $effective_time, $description);
 
 
-        $error1 = null;
-        if ($response == null || $response['status'] == 'error') {
-            $error1 = "Ocurrio un error al registrar los datos.";
+        $error = null;
+        if ($response == null ) {
+            $error = "Ocurrio un error al registrar los datos.";
+
+        }
+        if ($response['status'] == 'error') {
+            $error = $response['message'];
         }
 
         return view('injectables.injectablesRegister', ['response' => $response,
             'listAnimals' => $listAnimals,
-            'errorMsg' => $error1
+            'errorMsg' => $error
         ]);
     }
 
